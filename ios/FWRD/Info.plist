@@ -51,5 +51,27 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>whatsapp</string>
+		<string>instagram</string>
+		<string>facebook</string>
+		<string>twitter</string>
+		<string>youtube</string>
+		<string>spotify</string>
+		<string>snapchat</string>
+		<string>telegram</string>
+		<string>messenger</string>
+		<string>linkedin</string>
+		<string>skype</string>
+		<string>viber</string>
+		<string>zoom</string>
+		<string>netflix</string>
+		<string>amazon</string>
+		<string>uber</string>
+		<string>gmail</string>
+		<string>maps</string>
+		<string>photos</string>
+	</array>
 </dict>
 </plist>
