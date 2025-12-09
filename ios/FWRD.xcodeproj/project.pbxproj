@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		0C80B921A6F3F58F76C31292 /* libPods-FWRD.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DCACB8F33CDC322A6C60F78 /* libPods-FWRD.a */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
+		6591D0562EE83E590017BCA9 /* InstalledAppsModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6591D0552EE83E590017BCA9 /* InstalledAppsModule.swift */; };
+		6591D0572EE83E590017BCA9 /* InstalledAppsModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 6591D0542EE83E590017BCA9 /* InstalledAppsModule.m */; };
 		761780ED2CA45674006654EE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 761780EC2CA45674006654EE /* AppDelegate.swift */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
 		E92B7F2274F522284F629E4B /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB81A68108700A75B9A /* PrivacyInfo.xcprivacy */; };
@@ -22,6 +24,9 @@
 		3B4392A12AC88292D35C810B /* Pods-FWRD.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FWRD.debug.xcconfig"; path = "Target Support Files/Pods-FWRD/Pods-FWRD.debug.xcconfig"; sourceTree = "<group>"; };
 		5709B34CF0A7D63546082F79 /* Pods-FWRD.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FWRD.release.xcconfig"; path = "Target Support Files/Pods-FWRD/Pods-FWRD.release.xcconfig"; sourceTree = "<group>"; };
 		5DCACB8F33CDC322A6C60F78 /* libPods-FWRD.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-FWRD.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		6591D0542EE83E590017BCA9 /* InstalledAppsModule.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = InstalledAppsModule.m; path = FWRD/InstalledAppsModule.m; sourceTree = "<group>"; };
+		6591D0552EE83E590017BCA9 /* InstalledAppsModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = InstalledAppsModule.swift; path = FWRD/InstalledAppsModule.swift; sourceTree = "<group>"; };
+		6591D0582EE83E600017BCA9 /* FWRD-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "FWRD-Bridging-Header.h"; sourceTree = "<group>"; };
 		761780EC2CA45674006654EE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = FWRD/AppDelegate.swift; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = FWRD/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
@@ -70,11 +75,14 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				6591D0542EE83E590017BCA9 /* InstalledAppsModule.m */,
+				6591D0552EE83E590017BCA9 /* InstalledAppsModule.swift */,
 				13B07FAE1A68108700A75B9A /* FWRD */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				BBD78D7AC51CEA395F1C20DB /* Pods */,
+				6591D0582EE83E600017BCA9 /* FWRD-Bridging-Header.h */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -131,7 +139,7 @@
 				LastUpgradeCheck = 1210;
 				TargetAttributes = {
 					13B07F861A680F5B00A75B9A = {
-						LastSwiftMigration = 1120;
+						LastSwiftMigration = 1620;
 					};
 				};
 			};
@@ -246,6 +254,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6591D0562EE83E590017BCA9 /* InstalledAppsModule.swift in Sources */,
+				6591D0572EE83E590017BCA9 /* InstalledAppsModule.m in Sources */,
 				761780ED2CA45674006654EE /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -275,6 +285,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = FWRD;
+				SWIFT_OBJC_BRIDGING_HEADER = "FWRD-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -302,6 +313,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = FWRD;
+				SWIFT_OBJC_BRIDGING_HEADER = "FWRD-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
