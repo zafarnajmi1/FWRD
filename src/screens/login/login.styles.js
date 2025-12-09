@@ -16,7 +16,6 @@ const styles = StyleSheet.create({
    flex: 1,
     backgroundColor: colors.bgcolor,
     paddingHorizontal: 20,
-    
     justifyContent: "space-between"
  },
  logo:{
