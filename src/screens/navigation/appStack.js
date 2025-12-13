@@ -1,6 +1,7 @@
 import React from "react";
 import HomeTabs from './homeTabs/homeTabs';
 import LoginScreen from '../login/login';
+import AppBlockedScreen from '../AppBlocked/appBlocked';
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 const Stack = createNativeStackNavigator()
@@ -11,6 +12,7 @@ function AppStack(){
 
                 <Stack.Screen name="Login" component={LoginScreen}></Stack.Screen>
                 <Stack.Screen name="HomeTabs" component={HomeTabs}></Stack.Screen>
+                <Stack.Screen name="AppBlocked" component={AppBlockedScreen}></Stack.Screen>
 
 
             </Stack.Group>
