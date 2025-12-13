@@ -9,6 +9,7 @@ borderColor: "#b7c1c9",
 placeholder:"#777",
  grayColor : "#ccc",
  muted: "#8E8E93",
+ grayBorder:'#E7E9E9',
  
 }
 export default colors;

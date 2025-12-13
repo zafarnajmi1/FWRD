@@ -57,5 +57,11 @@ const styles = StyleSheet.create({
   flatListStyle: {
     flex: 1,
   },
+   separator: {
+    width: 1,
+    backgroundColor: colors.placeholder,
+    marginHorizontal: 10,
+    height: "80%",
+  },
 });
 export default styles;

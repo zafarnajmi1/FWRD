@@ -12,17 +12,30 @@ import Header from "../../components/Header";
 import LinearGradient from "react-native-linear-gradient";
 import Images from "../../assets/images";
 import colors from "../../assets/colors";
-// import { BottomSheet } from "../../components/bottomSheet";
+ import { BottomSheet } from "../../components/bottomSheet";
 import { heightPercentageToDP } from "react-native-responsive-screen";
 const BlockerScreen = ({navigation}) => {
 
 const refRBSheet = useRef();
 
+  
+  const openBottomSheet = useCallback(
+    (item) => {
+      if (refRBSheet.current) {
+        refRBSheet.current.present();
+      }
+    },
+    [refRBSheet]
+  );
+
+  const hideBottomSheet = () => {
+    if (refRBSheet.current) {
+      refRBSheet.current.close();
+    }
+  };
     return (
         <SafeAreaView style = {styles.container}>
-            <Header title="Blocker" isShow={true} onPlusPress={()=>{
-              Alert.alert("Add Apps List")
-            }} />
+            <Header title="Blocker" isShow={true} onPlusPress={openBottomSheet} />
          <View style={styles.wraper}>
                     <View style={styles.cardWrapper}>
                         <Image
@@ -62,7 +75,17 @@ const refRBSheet = useRef();
             </TouchableOpacity>
 
             </View>
-
+<BottomSheet
+        refRBSheet={refRBSheet}
+        onClose={() => hideBottomSheet()}
+        scrollEnabled={true}
+        disableDynamicSizing={true}
+        removeSheetScrolllView={true}
+        height={heightPercentageToDP(50)}
+      >
+        <View style={{backgroundColor:colors.white,flex:1}}><Text> Added Botome Sheet  </Text></View>
+       
+      </BottomSheet>
         </SafeAreaView>
     );
 }

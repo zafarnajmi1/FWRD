@@ -2,10 +2,10 @@ import React, { useState } from "react";
 import { View, Text, FlatList } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import styles from "./analytics.styles";
-import TaskDetail from "../../components/TaskDetail/TaskDetail";
-import TaskRow from "../../components/TaskRow/TaskRow";
+import TaskDetail from "../../components/AnalyticsComponents/AnalyticsGrid";
+import TaskRow from "../../components/AnalyticsRow/AnalyticsRow";
 //import TaskRowArrow from "../../components/TaskRowArrow/TaskRowArrow";
-import TaskRowArrow from '../../components/TaskRowArrow/TaskRowArrow'
+import TaskRowArrow from '../../components/AnalyticsRowArrow/AnalyticsRowArrow'
 const AnalyticsScreen = ({ navigation }) => {
   // Change this value to show different components: 1 = TaskDetail, 2 = TaskRow, 3 = TaskRowArrow
   const [showComponent, setShowComponent] = useState(2);
@@ -236,7 +236,7 @@ const AnalyticsScreen = ({ navigation }) => {
               <Text style={styles.sectionHeading}>Today</Text>
               <Text style={styles.timeText}>2:45</Text>
             </View>
-
+             <View style={styles.separator} />
             {/* Average Section */}
             <View style={styles.section}>
               <Text style={styles.sectionHeading}>Average</Text>

@@ -1,6 +1,6 @@
 import React from "react";
 import { View, Text, Pressable } from "react-native";
-import styles from "./TaskRowArrow.styles";
+import styles from "./AnalyticsRowArrow.styles";
 
 const TaskRowArrow = ({ item, onPress }) => {
   return (

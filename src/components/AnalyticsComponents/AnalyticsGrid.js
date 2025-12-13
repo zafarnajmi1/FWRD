@@ -1,6 +1,6 @@
 import React from "react";
 import { View, Text, Pressable } from "react-native";
-import styles from "./TaskDetail.styles";
+import styles from "./AnalyticsGrid.styles";
 
 const TaskDetail = ({ item, onPress }) => {
   return (
