@@ -4,8 +4,8 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import styles from "./analytics.styles";
 import TaskDetail from "../../components/TaskDetail/TaskDetail";
 import TaskRow from "../../components/TaskRow/TaskRow";
-import TaskRowArrow from "../../components/TaskRowArrow/TaskRowArrow";
-
+//import TaskRowArrow from "../../components/TaskRowArrow/TaskRowArrow";
+import TaskRowArrow from '../../components/TaskRowArrow/TaskRowArrow'
 const AnalyticsScreen = ({ navigation }) => {
   // Change this value to show different components: 1 = TaskDetail, 2 = TaskRow, 3 = TaskRowArrow
   const [showComponent, setShowComponent] = useState(2);
