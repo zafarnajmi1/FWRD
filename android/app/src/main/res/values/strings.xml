@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">FWRD</string>
+    <string name="accessibility_service_description">FWRD needs accessibility permission to monitor and block locked apps. This allows FWRD to detect when locked apps are launched and prevent them from opening.</string>
 </resources>
