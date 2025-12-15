@@ -15,6 +15,9 @@ class InstalledAppsModule: NSObject {
     DispatchQueue.global(qos: .userInitiated).async {
       var appList: [[String: Any]] = []
       
+      // Get current app's bundle identifier to exclude it
+      let currentBundleId = Bundle.main.bundleIdentifier ?? ""
+      
       // Wrap everything in autoreleasepool and error handling
       autoreleasepool {
         // Try to use LSApplicationWorkspace (private API - for development only)
@@ -51,13 +54,18 @@ class InstalledAppsModule: NSObject {
                     }
                     
                     // Skip if no bundle ID
-                    guard let currentBundleId = bundleId else {
+                    guard let currentAppBundleId = bundleId else {
+                      continue
+                    }
+                    
+                    // Skip the current app itself
+                    if currentAppBundleId == currentBundleId {
                       continue
                     }
                     
                     // Get app name
                     let localizedNameSelector = NSSelectorFromString("localizedName")
-                    var appLabel: String = currentBundleId.components(separatedBy: ".").last ?? currentBundleId
+                    var appLabel: String = currentAppBundleId.components(separatedBy: ".").last ?? currentAppBundleId
                     
                     if appObj.responds(to: localizedNameSelector) {
                       if let localizedName = appObj.perform(localizedNameSelector)?.takeUnretainedValue() as? String,
@@ -68,6 +76,8 @@ class InstalledAppsModule: NSObject {
                     appDict["label"] = appLabel
                     
                     // Check if it's a system app
+                    // System apps are in /Applications/ or /System/
+                    // User-installed apps are in /private/var/containers/Bundle/Application
                     let bundleURLSelector = NSSelectorFromString("bundleURL")
                     var isSystemApp = false
                     var bundleURL: URL? = nil
@@ -76,33 +86,94 @@ class InstalledAppsModule: NSObject {
                       if let url = appObj.perform(bundleURLSelector)?.takeUnretainedValue() as? URL {
                         bundleURL = url
                         let path = url.path
-                        // More accurate system app detection
-                        isSystemApp = path.contains("/Applications/") || 
-                                     path.contains("/System/") || 
-                                     path.contains("/private/var/containers/Bundle/Application") ||
-                                     path.contains("/var/containers/Bundle/Application")
+                        // Only mark as system app if in /Applications/ or /System/
+                        // User-installed apps (YouTube, Instagram, WhatsApp, etc.) are in /private/var/containers/Bundle/Application
+                        isSystemApp = path.contains("/Applications/") || path.contains("/System/")
                       }
+                    }
+                    
+                    // Filter out system/internal apps and services
+                    let bundleIdLower = currentAppBundleId.lowercased()
+                    let appLabelLower = appLabel.lowercased()
+                    
+                    // Define allowed system apps (user-facing Apple apps)
+                    let allowedSystemApps = [
+                      "com.apple.mobilemail", // Mail
+                      "com.apple.mobilesafari", // Safari
+                      "com.apple.mobileslideshow", // Photos
+                      "com.apple.maps", // Maps
+                      "com.apple.music", // Music
+                      "com.apple.calculator", // Calculator
+                      "com.apple.camera", // Camera
+                      "com.apple.notes", // Notes
+                      "com.apple.reminders", // Reminders
+                      "com.apple.calendar" // Calendar
+                    ]
+                    
+                    // Skip system apps (except well-known user apps)
+                    if isSystemApp {
+                      if !allowedSystemApps.contains(currentAppBundleId) {
+                        continue
+                      }
+                    }
+                    
+                    // Filter out internal/system service apps by bundle ID patterns
+                    let serviceKeywords = [
+                      "service", "viewservice", "uiservice", "systemui",
+                      "keyboard", "ime", "inputmethod", "wallpaper",
+                      "setup", "preferences", "settings", "internal",
+                      "framework", "privateframeworks", "system",
+                      "com.apple.springboard", "com.apple.backboardd",
+                      "com.apple.mediaserverd", "com.apple.itunesstored",
+                      "com.apple.itunescloudd", "com.apple.apsd",
+                      "com.apple.identityservicesd", "com.apple.imagent",
+                      "com.apple.voicemail", "com.apple.telephonyutilities",
+                      "com.apple.telephony", "com.apple.mobile.installation_proxy",
+                      "com.apple.mobile.lockdown", "com.apple.mobile.softwareupdated",
+                      "com.apple.mobileassetd", "com.apple.mobilebackup",
+                      "com.apple.mobilebackup2", "com.apple.mobilefile_relay",
+                      "com.apple.mobileactivationd", "com.apple.mobile.obliteration",
+                      "com.apple.mediastream", "com.apple.mediastream.sharedstreams",
+                      "com.apple.assistantd", "com.apple.siri", "com.apple.sirid",
+                      "com.apple.siri.voice", "com.apple.siri.voiceassistant",
+                      "com.apple.siri.voiceassistantd"
+                    ]
+                    
+                    // Check if bundle ID or label contains service keywords
+                    let isInternalService = serviceKeywords.contains { keyword in
+                      bundleIdLower.contains(keyword) || appLabelLower.contains(keyword)
+                    }
+                    
+                    if isInternalService {
+                      continue
+                    }
+                    
+                    // Skip apps with very short or generic names (likely system components)
+                    if appLabel.count < 3 {
+                      continue
+                    }
+                    
+                    // Skip apps with bundle IDs that look like system services
+                    if bundleIdLower.hasPrefix("com.apple.") && !allowedSystemApps.contains(currentAppBundleId) {
+                      continue
                     }
                     
                     appDict["isSystemApp"] = isSystemApp
                     
-                    // Only include user-installed apps (skip system apps) - matching Android behavior
-                    if !isSystemApp {
-                      // Try to get app icon
-                      var iconBase64: String? = nil
-                      if let url = bundleURL {
-                        iconBase64 = self.getAppIcon(bundleURL: url, bundleId: currentBundleId)
-                      }
-                      
-                      // Match Android: use null (NSNull) when icon is not available
-                      if let icon = iconBase64 {
-                        appDict["icon"] = icon
-                      } else {
-                        appDict["icon"] = NSNull()
-                      }
-                      
-                      appList.append(appDict)
+                    // Try to get app icon
+                    var iconBase64: String? = nil
+                    if let url = bundleURL {
+                      iconBase64 = self.getAppIcon(bundleURL: url, bundleId: currentAppBundleId)
                     }
+                    
+                    // Match Android: use null (NSNull) when icon is not available
+                    if let icon = iconBase64 {
+                      appDict["icon"] = icon
+                    } else {
+                      appDict["icon"] = NSNull()
+                    }
+                    
+                    appList.append(appDict)
                   }
                 }
               }
@@ -134,7 +205,10 @@ class InstalledAppsModule: NSObject {
   private func getAppsUsingURLSchemes() -> [[String: Any]] {
     var appList: [[String: Any]] = []
     
-    // Common app URL schemes
+    // Get current app's bundle identifier to exclude it
+    let currentBundleId = Bundle.main.bundleIdentifier ?? ""
+    
+    // Common app URL schemes (social media and popular apps)
     let commonApps: [(scheme: String, name: String, bundleId: String)] = [
       ("whatsapp://", "WhatsApp", "net.whatsapp.WhatsApp"),
       ("instagram://", "Instagram", "com.burbn.instagram"),
@@ -158,6 +232,11 @@ class InstalledAppsModule: NSObject {
     ]
     
     for app in commonApps {
+      // Skip the current app itself
+      if app.bundleId == currentBundleId {
+        continue
+      }
+      
       if let appURL = URL(string: app.scheme) {
         if UIApplication.shared.canOpenURL(appURL) {
           var appDict: [String: Any] = [
