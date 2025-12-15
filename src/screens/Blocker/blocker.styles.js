@@ -3,173 +3,102 @@ import colors from "../../assets/colors";
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    flex:1,
+    backgroundColor:colors.bgcolor
+  },
+  wraper:{
+    flex: 1, 
+    
     backgroundColor: colors.bgcolor,
+    marginTop:15,
+    paddingHorizontal: 20,
+    
   },
-  wraper: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
+
+  cardWrapper: {
+
+    alignSelf: "center"
+
   },
-  header: {
-    padding: 20,
-    borderBottomWidth: 1,
-    borderBottomColor: "#E0E0E0",
-    backgroundColor: "#FFFFFF",
+  cardImage: {
+    width: 400,
+    height: 200,
   },
-  title: {
-    fontSize: 24,
-    fontWeight: "bold",
-    color: "#000000",
-    marginBottom: 4,
+
+  
+
+centerContainer: {
+  flex: 1,
+  justifyContent: "center",   
+  alignItems: "center",      
+},
+
+  lockWrapper: {
+
+    // alignItems: "center",
+    // justifyContent: 'center',
+    //alignSelf:'center'
   },
-  subtitle: {
-    fontSize: 14,
-    color: "#666666",
+  lockButton: {
+    width: 120,
+    height: 120,
+    
   },
-  listContainer: {
-    padding: 10,
+  lockIcon: {
+    width: 90,
+    height: 90,
+   
   },
-  emptyListContainer: {
-    flex: 1,
-  },
-  appItem: {
-    flexDirection: "row",
-    alignItems: "center",
-    backgroundColor: "#FFFFFF",
-    padding: 12,
-    marginVertical: 4,
-    marginHorizontal: 8,
-    borderRadius: 8,
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 1,
-    },
-    shadowOpacity: 0.1,
-    shadowRadius: 2,
-    elevation: 2,
-  },
-  appItemLocked: {
-    backgroundColor: "#FFF5F5",
-    borderWidth: 1,
-    borderColor: "#FFE0E0",
-  },
-  appIcon: {
-    width: 48,
-    height: 48,
-    borderRadius: 8,
-    marginRight: 12,
-    backgroundColor: "#F0F0F0",
-    overflow: "hidden",
-  },
-  iconPlaceholder: {
-    backgroundColor: "#E0E0E0",
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  iconPlaceholderText: {
-    fontSize: 20,
-    fontWeight: "600",
-    color: "#666666",
-  },
-  appInfo: {
-    flex: 1,
-    justifyContent: "center",
-  },
-  appNameRow: {
-    flexDirection: "row",
-    alignItems: "center",
-    marginBottom: 4,
-  },
-  appName: {
-    fontSize: 16,
-    fontWeight: "600",
-    color: "#000000",
-  },
-  appNameLocked: {
-    color: "#CC0000",
-  },
-  lockBadge: {
-    fontSize: 14,
-    marginLeft: 6,
-  },
-  appIconLocked: {
-    opacity: 0.6,
-  },
-  checkbox: {
-    width: 24,
-    height: 24,
-    borderRadius: 12,
-    borderWidth: 2,
-    borderColor: "#CCCCCC",
-    justifyContent: "center",
-    alignItems: "center",
-    marginLeft: 8,
-  },
-  checkboxChecked: {
-    backgroundColor: "#FF3B30",
-    borderColor: "#FF3B30",
-  },
-  checkmark: {
-    color: "#FFFFFF",
-    fontSize: 14,
-    fontWeight: "bold",
-  },
-  appPackage: {
-    fontSize: 12,
-    color: "#666666",
-  },
-  emptyContainer: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    padding: 20,
-  },
-  emptyText: {
-    fontSize: 16,
-    color: "#666666",
-    marginTop: 16,
-    textAlign: "center",
-  },
-  errorText: {
-    fontSize: 16,
-    color: "#FF3B30",
-    marginTop: 16,
-    textAlign: "center",
-  },
-  retryText: {
-    fontSize: 14,
-    color: "#007AFF",
+  lockText: {
     marginTop: 8,
-    textDecorationLine: "underline",
+    fontSize: 16,
+    fontWeight: "600",
+    color: "#000",
   },
-  accessibilityButton: {
-    marginTop: 12,
-    padding: 10,
-    backgroundColor: "#FFF3CD",
-    borderRadius: 6,
-    borderWidth: 1,
-    borderColor: "#FFC107",
+
+  
+  optionBox: {
+  
+    backgroundColor: colors.white,
+    borderRadius: 8,
+    padding: 16,
+    marginTop: 25,
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    
   },
-  accessibilityButtonText: {
-    fontSize: 12,
-    color: "#856404",
-    textAlign: "center",
+  optionLabel: {
+    fontSize: 17,
+    fontWeight: "600",
   },
-  infoBox: {
-    marginTop: 12,
-    padding: 12,
-    backgroundColor: "#E3F2FD",
-    borderRadius: 6,
-    borderWidth: 1,
-    borderColor: "#2196F3",
+  editText: {
+    fontSize: 15,
+    color: "#4C8DAE",
+    fontWeight: "600",
   },
-  infoText: {
-    fontSize: 12,
-    color: "#1565C0",
-    textAlign: "center",
-    lineHeight: 18,
+
+  
+  profileBox: {
+    width: "100%",
+    backgroundColor: "white",
+    borderRadius: 8,
+    padding: 16,
+    marginTop: 15,
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    marginBottom:20
+    
+  },
+  profileLabel: {
+    fontSize: 17,
+    fontWeight: "600",
+  },
+  arrowIcon: {
+    width: 18,
+    height: 18,
+    tintColor: "#000",
   },
 });
 export default styles;

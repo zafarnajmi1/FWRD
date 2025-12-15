@@ -14,6 +14,9 @@ import {
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { NavigationContainer } from '@react-navigation/native';
 import { useRef, useEffect } from 'react';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
+import {BottomSheetModalProvider} from '@gorhom/bottom-sheet';
+
 import AppStack from './src/screens/navigation/appStack'
 
 const Stack = createNativeStackNavigator();
@@ -93,14 +96,18 @@ function App() {
   }, []);
 
   return (
-    <NavigationContainer
-      ref={(ref) => {
-        navRef.current = ref;
-        navigationRef.current = ref;
-      }}
-    >
+     <GestureHandlerRootView>
+    <BottomSheetModalProvider>
+    <NavigationContainer>
       <AppStack/>
     </NavigationContainer>
+    </BottomSheetModalProvider>
+    </GestureHandlerRootView>
+
+    
+   
+    
+
   );
 }
 
