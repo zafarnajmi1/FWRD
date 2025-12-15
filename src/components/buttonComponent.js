@@ -3,16 +3,21 @@ import { Pressable, StyleSheet, Text } from "react-native";
 import LinearGradient from "react-native-linear-gradient";
 import colors from '../assets/colors';
 
-const ButtonComponent = ({ title, onPress, disabled }) => {
+const ButtonComponent = ({
+   title, onPress, disabled ,
+   gradientColors = [colors.buttonColor1, colors.buttonColor2],
+  textColor = colors.white,
+
+}) => {
   return (
     <Pressable onPress={onPress} disabled={disabled}>
       <LinearGradient
-        colors={[colors.buttonColor1, colors.buttonColor2]}
+        colors={gradientColors}
         start={{ x: 0, y: 0 }}
         end={{ x: 1, y: 1 }}
         style={styles.button}
       >
-        <Text style={styles.text}>{title}</Text>
+        <Text style={[styles.text, { color: textColor }]}>{title}</Text>
       </LinearGradient>
     </Pressable>
   );
@@ -29,7 +34,7 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.15,
     shadowOffset: { width: 0, height: 3 },
     shadowRadius: 6,
-    elevation: 3,
+    //elevation: 3,
   },
   text: {
     color: colors.white,

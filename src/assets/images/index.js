@@ -15,6 +15,13 @@ const images = {
      lockIcon:require('../images/lockIcon.png'),
 
       rightArrow:require('../images/rightArrow.png'),
+      cross:require('../images/crossicon.png'),
+       ScanFram:require('../images/ScanFram.png'),
+       nfcCardicon:require('../images/nfcCardicon.png'),
+       Pincel:require('../images/Pincel.png'),
+       trash:require('../images/trash.png'),
+       nfclock:require('../images/nfclock.png'),
+       backArrow:require('../images/backArrow.png'),
     
 };
 export default images;

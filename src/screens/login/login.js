@@ -53,7 +53,7 @@ const LoginScreen = ({navigation,route}) => {
 
       <PrimaryButton
         title="Send Code"
-        onPress={() => navigation.navigate('HomeTabs')}
+        onPress={() => navigation.navigate('OTPScreen')}
         //disabled={phone.length < 4}
       />
      

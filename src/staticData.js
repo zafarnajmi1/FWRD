@@ -7,6 +7,14 @@ const DATA = [
   { id: "6", date: "DEC 3", h: 4, m: 21 },
 ];
 
-export {
-    DATA
+const SHEET = {
+  ADD_PROFILE: "ADD_PROFILE",
+  EDIT_PROFILE: "EDIT_PROFILE",
+  SELECT_PROFILE: "SELECT_PROFILE",
+};
+
+
+export default {
+    DATA,
+    SHEET
 };

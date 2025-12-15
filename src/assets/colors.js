@@ -10,6 +10,11 @@ placeholder:"#777",
  grayColor : "#ccc",
  muted: "#8E8E93",
  grayBorder:'#E7E9E9',
- 
+ subheading:"rgba(142, 142, 147, 1)",
+ redbutton:"rgba(246, 229, 231, 1)",
+ red:"rgba(230, 79, 80, 1)",
+
+ statuscolor:"rgba(104, 108, 109, 1)",
+ statusBG:"rgba(222, 222, 222, 1)",
 }
 export default colors;

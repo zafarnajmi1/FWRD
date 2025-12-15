@@ -9,7 +9,7 @@ import {
 import { heightPercentageToDP as hp } from 'react-native-responsive-screen';
 import { TouchableWithoutFeedback, View, Text, Pressable, StyleSheet } from 'react-native';
 import colors from '../assets/colors';
-import { MediumText } from './Typography';
+
 
 
 export const BottomSheet = (props) => {
@@ -58,15 +58,15 @@ export const BottomSheet = (props) => {
       keyboardBlurBehavior="restore"
       enableDismissOnClose
       backdropComponent={renderBackdrop}
-      backgroundStyle={{backgroundColor:colors.appBG}}
+      backgroundStyle={{backgroundColor:colors.bgcolor}}
       onDismiss={onDismiss}
     >
-      
+      {Boolean(title) && (
        <Pressable onPress={onClose} style={styles.header}>
-         <Text>title</Text>
-      
+         <MediumText text={title} />
+       <Text>Close</Text>
      </Pressable>
-      
+      )}
      { removeSheetScrolllView ?
       <View style={{ minHeight: height }}>{children}</View>
       :

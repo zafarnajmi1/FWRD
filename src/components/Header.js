@@ -1,10 +1,24 @@
 import React from "react";
 import { View, Text, TouchableOpacity, Image, StyleSheet } from "react-native";
 import Images from "../assets/images"; // update path if different
+import { widthPercentageToDP as wp } from 'react-native-responsive-screen';
 
-const Header = ({ title, onPlusPress, isShow = false }) => {
+const Header = ({ title, onPlusPress, isShow = false ,onBackPress,
+  showBackButton = false,}) => {
   return (
     <View style={styles.container}>
+
+ {showBackButton && (
+        <TouchableOpacity onPress={onBackPress} style={styles.backButton}>
+          <View style={styles.leftView}>
+            <Image
+            source={Images.backArrow}
+            style={styles.plusIcon}
+            resizeMode="contain"
+          />
+          </View>
+        </TouchableOpacity>
+      )}
       <Text style={styles.title}>{title}</Text>
 
      {isShow ? (
@@ -25,11 +39,13 @@ const Header = ({ title, onPlusPress, isShow = false }) => {
 const styles = StyleSheet.create({
   container: {
     width: "100%",
+    //height:'6%',
     marginTop: 20,
     flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
     paddingHorizontal: 20,
+    //paddingVertical: 9,
     position: "relative",
   },
 
@@ -56,6 +72,13 @@ const styles = StyleSheet.create({
     height: 50,
     
   },
+   backButton: {
+    position: 'absolute',
+    left: wp(3),
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  
 });
 
 export default Header;
