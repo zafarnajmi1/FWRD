@@ -6,7 +6,7 @@ const images = {
 
     selectedAnalyticsicon:require('../images/selectedanalyticsicon.png'),
     unselectedAnalyticsicon:require('../images/unselectedanalyticsicon.png'),
-    selectedSettingsicon:require('../images/settingsicon.png'),
+    selectedSettingsicon:require('../images/selectedSettings.png'),
     unselectedSettingsicon:require('../images/settingsicon.png'),
 
     plusicon:require('../images/PlussIcon.png'),

@@ -1,7 +1,7 @@
 import React,{useState} from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import styles from "./login.styles";
-import { View,Button, Image,Dimensions, Text,TextInput} from "react-native";
+import { View,Button, Image,Dimensions, Text,TextInput, Alert} from "react-native";
 import Images from "../../../src/assets/images/";
 import CountryPicker from "react-native-country-picker-modal";
 import PrimaryButton from '../../../src/components/buttonComponent';
@@ -13,6 +13,27 @@ const LoginScreen = ({navigation,route}) => {
   const [phone, setPhone] = useState("");
   const [isFocused, setIsFocused] = useState(false); 
   const { width, height } = Dimensions.get('window');
+ 
+ 
+  const onSendOtp = () => {
+  if (!phone || phone.trim().length === 0) {
+    Alert.alert("Invalid Phone", "Please enter your phone number");
+    return;
+  }
+
+  if (phone.replace(/\D/g, "").length < 6) {
+    Alert.alert(
+      "Invalid Phone",
+      "Phone number must be at least 6 digits"
+    );
+    return;
+  }
+
+  navigation.navigate("OTPScreen", {
+    phone,
+  });
+};
+
     return (
         <SafeAreaView style ={styles.container}>
 
@@ -53,8 +74,8 @@ const LoginScreen = ({navigation,route}) => {
 
       <PrimaryButton
         title="Send Code"
-        onPress={() => navigation.navigate('OTPScreen')}
-        //disabled={phone.length < 4}
+        onPress={onSendOtp}
+        
       />
      
      
